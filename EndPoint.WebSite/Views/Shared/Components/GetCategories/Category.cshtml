@@ -1,0 +1,32 @@
+﻿@using Store.Application.Services.Common.Queries.GetCategoriesUserService;
+@model List<CategoryResultDTO>
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+
+    <li id="nav-menu-item" class="menu-item nav-overlay">
+        <a href="~/products/index?CategoryId=@item.Id" class="current-link-menu">
+            @item.Name
+        </a>
+
+        @if (item.Children.Count() > 0)
+        {
+            <ul class="sub-menu is-mega-menu-small">
+
+                @foreach (var itemChild in item.Children)
+                {
+                    <li class="menu-mega-item menu-item-type-mega-menu item-small">
+                        <a href="~/products/index?CategoryId=@itemChild.Id" class="mega-menu-link">
+                            @itemChild.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+    </li>
+}
+

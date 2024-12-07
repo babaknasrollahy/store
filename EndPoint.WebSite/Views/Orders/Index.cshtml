@@ -1,0 +1,76 @@
+﻿@using Store.Application.Services.Finanace.Commands.GetOrderService
+@model List<OrderDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart-form">
+    <form action="#" class="c-form">
+        <table class="table table-light table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="product-cart-Count">شماره سفارش</th>
+                    <th scope="col" class="product-cart-Count">شناسه پرداخت</th>
+                    <th scope="col" class="products">محصولات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">
+                            <p class="text">@item.Id</p>
+                        </th>
+                        <td>
+                            <p class="text">@item.RequestPayId</p>
+                        </td>
+                        <td>
+                            <table class="table table-light table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="product-cart-name">نام محصول</th>
+                                        <th scope="col" class="product-cart-price">قیمت</th>
+                                        <th scope="col" class="product-cart-Count">تعداد</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in item.OrderDetails)
+                                    {
+                                        <tr>
+                                            <th scope="row" class="product-cart-name">
+                                                <div class="product-thumbnail-img">
+                                                    <a href="#">
+                                                        <img src="~/@product.ProductImg" height="100" width="100">
+                                                    </a>
+                                                </div>
+                                                <div class="product-title">
+                                                    <a href="#">
+                                                        @product.ProductName
+                                                    </a>
+
+                                                </div>
+                                            </th>
+                                            <td class="product-cart-price">
+                                                <span class="amount">
+                                                    @product.Price.ToString("N0")
+                                                    <span>تومان</span>
+                                                </span>
+                                            </td>
+                                            <td class="product-cart-Count">
+                                                <span class="amount">
+                                                    @product.Count
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</div>
+
+

@@ -1,0 +1,67 @@
+﻿@using Store.Application.Services.HomePage.Queries.GetAllImagesService;
+@model List<HomePageImageDTO>
+@{
+    ViewData["Title"] = "تصاویر";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-wrap bar-success">
+                                <h4 class="card-title">لیست تصاویر</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">تصاویر</p>
+
+                                <a href="~/admin/HomePage/Create" class="btn btn-success">افزودن تصاویر جدید</a>
+
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="تصویر: activate to sort column descending" style="width: 222px;">تصویر</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="محل قرارگیری: activate to sort column descending" style="width: 222px;">محل قرارگیری</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="لینک: activate to sort column descending" style="width: 222px;">لینک</th>
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="ابزارها: activate to sort column descending" style="width: 222px;">ابزارها</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr role="row" class="odd">
+                                                        <td class="sorting_1"><img width="300" src="~/@item.Src" /></td>
+                                                        <td>
+                                                            @item.Location
+                                                        </td>
+                                                        <td>
+                                                            @item.Link
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-danger" href="~/Admin/HomePage/Delete?Id=@item.Id">حذف</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

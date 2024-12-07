@@ -1,0 +1,22 @@
+﻿@using Store.Application.Services.Wallet.Shared.Queries.GetWalletsBalanceByUserService
+@model WalletsBalancesDTO
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text text-center">لطفا روش پرداخت خود را انتخاب کنید</p>
+        </div>
+    </div>
+    <div class="row" style="height: 300px;">
+        <button onclick="window.location.replace('/Pay/PayByZarinPal')" class="btn btn-lg btn-primary" style="margin:auto;display:block;">درگاه زرینپال</button>
+        <button onclick="PayUsingCompanyWallet()" class="btn btn-lg btn-primary" style="margin:auto;display:block;" disabled="@(Model.CompanyBalance<ViewBag.TotalAmount)">کیف پول شرکتی (@Model.CompanyBalance.ToString("n0") تومان)</button>
+        <button onclick="PayUsingPersonalWallet()" class="btn btn-lg btn-primary" style="margin:auto;display:block;" disabled="@(Model.PersonalBalance<ViewBag.TotalAmount)">کیف پول شخصی (@Model.PersonalBalance.ToString("n0") تومان)</button>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Payment.js"></script>
+}

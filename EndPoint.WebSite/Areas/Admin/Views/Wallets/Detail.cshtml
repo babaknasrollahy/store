@@ -1,0 +1,101 @@
+﻿@addTagHelper *, LazZiya.TagHelpers
+@using EndPoint.WebSite.Units
+@using Store.Application.Services.Wallet.Shared.Queries.GetWalletByIdService
+@model WalletDTO
+
+@{
+    ViewData["Title"] = "کیف پول";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">کیف پول</p>
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="text">شماره کیف پول: @Model.Id</p>
+                                                <p class="text">کیف پول متعلق به @Model.UserName است</p>
+                                                <p class="text">موجودی کیف پول: @((Model.Transactions.Where(t => t.TransactionType == TransactionType.InCome).Sum(t => t.Amount) - @Model.Transactions.Where(t => t.TransactionType == TransactionType.OutCome).Sum(t => t.Amount)).ToString("N0"))  تومان</p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button class="btn btn-success" onclick="DepositMoney('@Model.Id')">واریز به کیف</button>
+                                                <button class="btn btn-danger" onclick="WithdrawMoney('@Model.Id')">برداشت از کیف</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="">شناسه پرداخت</th>
+                                                <th class="">شناسه کاربر</th>
+                                                <th class="">نام کاربر</th>
+                                                <th class="sorting_asc">تاریخ</th>
+                                                <th class="">مبلغ تراکنش</th>
+                                                <th class="">نوع تراکنش</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model.Transactions)
+                                            {
+                                                <tr role="row">
+                                                    <td>@item.Id</td>
+                                                    <td>@item.UserId</td>
+                                                    <td>@item.UserName</td>
+                                                    <td>@item.TransactionDate.ToShamsi()</td>
+                                                    <td>@item.Amount.ToString("N0")</td>
+                                                    @if (item.TransactionType == TransactionType.InCome)
+                                                    {
+                                                        <td><p class="text-success">واریز</p></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><p class="text-danger">برداشت</p></td>
+                                                    }
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="  text-center">
+                                <paging total-records="Model.Row"
+                                        page-no="Model.CurrentPage"
+                                        page-size="20"
+                                        show-prev-next="true"
+                                        show-total-pages="false"
+                                        show-total-records="false"
+                                        show-page-size-nav="false"
+                                        show-first-numbered-page="true"
+                                        show-last-numbered-page="true"
+                                        query-string-key-page-no="Page"
+                                        gap-size="2">
+                                </paging>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    </div>
+</div>
+@section Scripts
+{
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+
+    <script src="~/js/Wallet.js"></script>
+}

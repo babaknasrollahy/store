@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Home-PC\Desktop\Store</_PublishTargetUrl>
+    <History>True|2023-07-28T16:33:17.4629552Z;True|2023-07-28T19:04:51.9119150+03:30;True|2023-07-28T17:26:43.8017527+03:30;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Controllers/AuthenticationController.cs">
+      <publishTime>07/28/2023 12:06:12</publishTime>
+    </File>
+    <File Include="Controllers/HomeController.cs">
+      <publishTime>08/13/2023 15:49:37</publishTime>
+    </File>
+    <File Include="Controllers/ProductsController.cs">
+      <publishTime>07/22/2023 17:23:35</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

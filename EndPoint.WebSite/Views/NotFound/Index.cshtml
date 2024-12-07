@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "صفحه خطای 404";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Error Page -->
+<div class="error">
+    <div class="container-floud">
+        <div class="col-12 ground-color text-center">
+            <div class="container-error-404">
+                <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+            </div>
+            <br>
+            <br>
+            <h2 class="h1">صفحه مورد نظر یافت نشد!</h2>
+            <a href="/"><button class="btn btn-primary">بازگشت به صفحه نخست</button></a>
+        </div>
+    </div>
+</div>
+<!-- Error Page -->
+@section Css{
+    <link type="text/css" href="css/NotFound-css/bootstrap-rtl.css" rel="stylesheet" />
+    <link type="text/css" href="css/NotFound-css/style.css" rel="stylesheet" />
+}
+@section Scripts{
+    <script src="~/js/NotFound-js/scripts.js"></script>
+}

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  store:
+    image: store-image
+    container_name : store-container
+    ports:
+      - 5000:5000
+      - 5001:5001
+    environment:
+      - ASPNETCORE_HTTP_PORT=https://+:5001
+      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_ENVIRONMENT=Production
+  msSql:
+    image: mcr.microsoft.com/mssql/server
+    container_name: msSql
+    ports:
+      - 1433:1433
+    volumes:
+      - db-data:/var/opt/mssql/
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=F@123456.Farzad
+volumes:
+  db-data:
+    driver: local

@@ -1,0 +1,26 @@
+﻿@using Store.Application.Services.Common.Queries.GetCategoriesSearchService
+@model List<CategoryDTO>
+@{
+    Layout = null;
+}
+<div class="header-search-box">
+    <form method="get" asp-action="Index" asp-controller="Products" class="form-search">
+        <input type="search" class="header-search-input" name="SearchKey" placeholder="نام کالا، برند و یا دسته مورد نظر خود را جستجو کنید…">
+        <div class="action-btns">
+            <button class="btn btn-search" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+            <div class="search-filter">
+                <div class="form-ui">
+                    <div class="custom-select-ui">
+                        <select name="CategoryId" class="right" asp-items='@new SelectList(Model,"Id","Name")'>   
+                            <option>
+                                همه ی دسته ها
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
